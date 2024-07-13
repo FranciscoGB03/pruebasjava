@@ -20,12 +20,6 @@ minikube stop
 para iniciarlo:
 minikube start
 
-Kubernetes:
-para listar todos los pods
-kubectl get pods -A
-solo los creados:-
-kubectl get pods
-
 Para el ejemplo de creacion de un despliegue utilizar la carpeta de ejemplosYamlk8s
 dentro viene el despliegue  de nginx que es un servidor web
 entrar al dashboard
@@ -59,3 +53,22 @@ Finalmente para obtener la ip por la cual el servicio esta expuesto de manera lo
 minikube service nginx-deployment --url
 ejemplo de salida: http://10.168.49.2:32641
 esa ip se coloca en el navegador y debera mostrarse la pantalla de Welcome to nginx!
+
+
+COMANDOS UTILES PARA K8S:
+- Para listar todos los pods
+kubectl get pods -A
+- Solo los creados:
+kubectl get pods
+- Para deploy:
+kubectl apply -f carpetaConyamls
+- Para obtener info de los pods pero en especifico servicios:
+kubectl get svc
+- Para obtener los deployments:
+kubectl get deployments
+- Para revisar los logs de un pod en especifico:
+kubectl logs name_pod
+- Para eliminar los deployments:
+kubectl delete deployments nombre_pod name_pod1 nombre_pod2 ...
+- Para eliminar los servicios:
+kubectl delete svc name_svc name_svc1 name_svc2 ...
