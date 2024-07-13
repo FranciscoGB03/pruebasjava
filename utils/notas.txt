@@ -1,13 +1,27 @@
-para kubernetes
-para alzar el servicio:
- docker-compose up -d
-para obtener la configuracion del kubernetes
- docker exec -it <container_id> cat /etc/rancher/k3s/k3s.yaml > k3s.yaml
-exportar la varibale de ambiente
-    linux
-        export KUBECONFIG=$(pwd)/k3s.yaml
-    windows
-        entrar a variables de ambiente y agregar la variable con la ruta donde se encuentre el archivo yaml
-para verificacion del cluster
-tener instalado el minikube antes de echar andar la imagen 
-kubectl get nodes
+Para usar kubernetes de manera local a traves de docker:
+
+INSTALAR:
+minikube:
+https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download
+y seguir las instrucciones
+
+kubectl:
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
+y seguir las instrucciones para mac, linux o windows
+
+PARA INICIALIZAR EL CONTENEDORR CON DOCKER:
+minikube start --driver=docker
+para la administracion desde el navegador web:
+minikube dashboard
+
+para detener minikube:
+minikube stop
+
+para iniciarlo:
+minikube start
+
+Kubernetes:
+para listar todos los pods
+kubectl get pods -A
+solo los creados:-
+kubectl get pods
