@@ -1,0 +1,13 @@
+para kubernetes
+para alzar el servicio:
+ docker-compose up -d
+para obtener la configuracion del kubernetes
+ docker exec -it <container_id> cat /etc/rancher/k3s/k3s.yaml > k3s.yaml
+exportar la varibale de ambiente
+    linux
+        export KUBECONFIG=$(pwd)/k3s.yaml
+    windows
+        entrar a variables de ambiente y agregar la variable con la ruta donde se encuentre el archivo yaml
+para verificacion del cluster
+tener instalado el minikube antes de echar andar la imagen 
+kubectl get nodes
