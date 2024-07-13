@@ -25,3 +25,37 @@ para listar todos los pods
 kubectl get pods -A
 solo los creados:-
 kubectl get pods
+
+Para el ejemplo de creacion de un despliegue utilizar la carpeta de ejemplosYamlk8s
+dentro viene el despliegue  de nginx que es un servidor web
+entrar al dashboard
+ minikube dashboard
+una vez que entra al navegador dar clic en crear un nuevo recurso
+y pegar el contenido del archivo nginx.yaml
+esto hara que se genere el deploy y se generen el pod
+
+NOTA: Todo lo  que sigue se realiza desde una terminal ya sea cmd o terminal de linux
+
+Para comprobar su funcionamiento:
+kubectl get pods 
+el comando anterior nos muestra los pods generados, algo asi como se muestra acontinuacion
+NAME                               READY   STATUS    RESTARTS   AGE
+nginx-deployment-576c6b7b6-jd6jh   1/1     Running   0          7m1s
+para mirar los logs del pod:
+kubectl logs nginx-deployment-576c6b7b6-jd6jh
+la ultima parte del comando corresponde al nombre del pod
+
+Para el caso de nginx se requiere que se exponga el servicio por lo que se usa el siguiente comando:
+kubectl expose deployment nginx-deployment --type=NodePort --port=80
+como se observa esto se realiza a traves del nombre del pod y se asigna un puerto
+
+Para comprobar que el servicio fue expuesto se coloca el siguiente comando:
+kubectl get services
+arrojara una salida similar a la siguiente:
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes         ClusterIP   10.96.0.1       <none>        443/TCP        24m
+nginx-deployment   NodePort    10.108.13.146   <none>        80:32641/TCP   13s
+Finalmente para obtener la ip por la cual el servicio esta expuesto de manera local usamos:
+minikube service nginx-deployment --url
+ejemplo de salida: http://10.168.49.2:32641
+esa ip se coloca en el navegador y debera mostrarse la pantalla de Welcome to nginx!
